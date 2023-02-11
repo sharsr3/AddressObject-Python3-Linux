@@ -48,7 +48,7 @@ class AddressObject:
             f"              Expiration Date: {self.md_address_obj.GetLicenseExpirationDate()}")
 
         """
-        This number should match with file properties of the Melissa Data Object binary file.
+        This number should match with file properties of the Melissa Object binary file.
         If TEST appears with the build number, there may be a license key issue.
         """
         print(
@@ -67,7 +67,7 @@ class AddressObject:
         result_codes = self.md_address_obj.GetResults()
 
         """ 
-        ResultsCodes explain any issues address object has with the object.
+        ResultsCodes explain any issues Address Object has with the object.
         List of result codes for Address object
         https://wiki.melissadata.com/?title=Result_Code_Details#Address_Object
 
@@ -107,7 +107,7 @@ def parse_arguments():
 
 
 def run_as_console(license, test_address, test_city, test_state, test_zip, data_path):
-    print("\n\n===== WELCOME TO MELISSA DATA ADDRESS OBJECT LINUX PYTHON3 SAMPLE =====\n")
+    print("\n\n=========== WELCOME TO MELISSA ADDRESS OBJECT LINUX PYTHON3 ===========\n")
 
     address_object = AddressObject(license, data_path)
 
@@ -186,7 +186,7 @@ def run_as_console(license, test_address, test_city, test_state, test_zip, data_
 
                 print("Invalid Response, please respond 'Y' or 'N'")
 
-    print("\n=========== THANK YOU FOR USING MELISSA DATA PYTHON3 OBJECT ===========\n")
+    print("\n============= THANK YOU FOR USING MELISSA PYTHON3 OBJECT ==============\n")
 
 
 """  MAIN STARTS HERE   """

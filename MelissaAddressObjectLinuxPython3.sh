@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Name:    MelissaDataAddressObjectLinuxPython3
-# Purpose: Use the MelissaUpdater to make the MelissaDataAddressObjectLinuxPython3 sample usable
+# Name:    MelissaAddressObjectLinuxPython3
+# Purpose: Use the MelissaUpdater to make the MelissaAddressObjectLinuxPython3 code usable
 
 ######################### Constants ##########################
 
@@ -79,7 +79,7 @@ ProductName="DQ_ADDR_DATA"
 # Uses the location of the .sh file 
 # Modify this if you want to use 
 CurrentPath=$(pwd)
-ProjectPath="$CurrentPath/MelissaDataAddressObjectLinuxPython3Sample"
+ProjectPath="$CurrentPath/MelissaAddressObjectLinuxPython3"
 BuildPath="$ProjectPath"
 DataPath="$ProjectPath/Data"
 
@@ -156,7 +156,7 @@ CheckSOs()
 
 ########################## Main ############################
 
-printf "\n================ Sample of Melissa Data Address Object ================\n                    [ Python3 | Linux | 64BIT ]\n"
+printf "\n======================== Melissa Address Object =======================\n                    [ Python3 | Linux | 64BIT ]\n"
 
 # Get license (either from parameters or user input)
 if [ -z "$license" ];
@@ -209,15 +209,11 @@ fi
 
 printf "\nAll file(s) have been downloaded/updated!\n"
 
-# Start sample
-# Build project
-printf "\n============================ BUILD PROJECT ============================\n"
-
-
+# Start
 # Run Project
 if [ -z "$address" ] && [ -z "$city" ] && [ -z "$state" ] && [ -z "$zip" ];
 then
-    python3 $BuildPath/MelissaDataAddressObjectLinuxPython3Sample.py --license $license --dataPath $DataPath
+    python3 $BuildPath/MelissaAddressObjectLinuxPython3.py --license $license --dataPath $DataPath
 else
-    python3 $BuildPath/MelissaDataAddressObjectLinuxPython3Sample.py --license $license --dataPath $DataPath --address "$address" --city "$city" --state "$state" --zip "$zip"
+    python3 $BuildPath/MelissaAddressObjectLinuxPython3.py --license $license --dataPath $DataPath --address "$address" --city "$city" --state "$state" --zip "$zip"
 fi
