@@ -27,8 +27,7 @@ And return
 
 ## Tested Environments
 
-- Linux 64-bit Python 3.8.7
-- Ubuntu 20.04.05 LTS
+- Ubuntu Linux 20.04.05 LTS 64-bit Python 3.8.7
 - Melissa data files for 2023-06
 
 ## Required File(s) and Programs

@@ -213,7 +213,9 @@ printf "\nAll file(s) have been downloaded/updated!\n"
 # Run Project
 if [ -z "$address" ] && [ -z "$city" ] && [ -z "$state" ] && [ -z "$zip" ];
 then
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./MelissaAddressObjectLinuxPython3
     python3 $BuildPath/MelissaAddressObjectLinuxPython3.py --license $license --dataPath $DataPath
 else
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./MelissaAddressObjectLinuxPython3
     python3 $BuildPath/MelissaAddressObjectLinuxPython3.py --license $license --dataPath $DataPath --address "$address" --city "$city" --state "$state" --zip "$zip"
 fi

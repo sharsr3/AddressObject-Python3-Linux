@@ -2,15 +2,14 @@ from ctypes import *
 from enum import Enum
 import ctypes
 import os
+import sys
 
-dir = os.getcwd()
-
-
-if (os.name == 'nt'):
-  lib = ctypes.CDLL(f'{dir}/MelissaAddressObjectWindowsPython3/mdAddr.dll')
+if (os.name == 'nt' and sys.version_info[:2] >= (3,8)):
+  lib = ctypes.CDLL('mdAddr.dll', winmode=0)
+elif (os.name == 'nt'):
+  lib = ctypes.CDLL('mdAddr.dll')
 else:
-  lib = ctypes.CDLL(f'{dir}/MelissaAddressObjectLinuxPython3/libmdAddr.so')
-
+  lib = ctypes.CDLL('libmdAddr.so')
 
 lib.mdAddrCreate.argtypes = []
 lib.mdAddrCreate.restype = c_void_p
@@ -234,12 +233,8 @@ lib.mdAddrGetEWSFlag.argtypes = [c_void_p]
 lib.mdAddrGetEWSFlag.restype = c_char_p
 lib.mdAddrGetCMRA.argtypes = [c_void_p]
 lib.mdAddrGetCMRA.restype = c_char_p
-lib.mdAddrGetDsfNoStats.argtypes = [c_void_p]
-lib.mdAddrGetDsfNoStats.restype = c_char_p
 lib.mdAddrGetDsfVacant.argtypes = [c_void_p]
 lib.mdAddrGetDsfVacant.restype = c_char_p
-lib.mdAddrGetDsfDNA.argtypes = [c_void_p]
-lib.mdAddrGetDsfDNA.restype = c_char_p
 lib.mdAddrGetCountryCode.argtypes = [c_void_p]
 lib.mdAddrGetCountryCode.restype = c_char_p
 lib.mdAddrGetZipType.argtypes = [c_void_p]
@@ -264,10 +259,18 @@ lib.mdAddrGetMelissaAddressKey.argtypes = [c_void_p]
 lib.mdAddrGetMelissaAddressKey.restype = c_char_p
 lib.mdAddrGetMelissaAddressKeyBase.argtypes = [c_void_p]
 lib.mdAddrGetMelissaAddressKeyBase.restype = c_char_p
+# lib.mdAddrGetOutputParameter.argtypes = [c_void_p, c_char_p]
+# lib.mdAddrGetOutputParameter.restype = c_char_p
+# lib.mdAddrSetInputParameter.argtypes = [c_void_p, c_char_p, c_char_p]
+# lib.mdAddrSetInputParameter.restype = c_int
 lib.mdAddrFindSuggestion.argtypes = [c_void_p]
 lib.mdAddrFindSuggestion.restype = c_bool
 lib.mdAddrFindSuggestionNext.argtypes = [c_void_p]
 lib.mdAddrFindSuggestionNext.restype = c_bool
+lib.mdAddrGetDsfNoStats.argtypes = [c_void_p]
+lib.mdAddrGetDsfNoStats.restype = c_char_p
+lib.mdAddrGetDsfDNA.argtypes = [c_void_p]
+lib.mdAddrGetDsfDNA.restype = c_char_p
 lib.mdAddrGetPS3553_B6_TotalRecords.argtypes = [c_void_p]
 lib.mdAddrGetPS3553_B6_TotalRecords.restype = c_int
 lib.mdAddrGetPS3553_C1a_ZIP4Coded.argtypes = [c_void_p]
@@ -415,6 +418,8 @@ lib.mdParseGetLockBox.argtypes = [c_void_p]
 lib.mdParseGetLockBox.restype = c_char_p
 lib.mdParseGetDeliveryInstallation.argtypes = [c_void_p]
 lib.mdParseGetDeliveryInstallation.restype = c_char_p
+# lib.mdParseParseRule.argtypes = [c_void_p]
+# lib.mdParseParseRule.restype = c_int
 
 lib.mdStreetCreate.argtypes = []
 lib.mdStreetCreate.restype = c_void_p
@@ -953,14 +958,8 @@ class mdAddr(object):
 	def GetCMRA(self):
 		return lib.mdAddrGetCMRA(self.I).decode('utf-8')
 
-	def GetDsfNoStats(self):
-		return lib.mdAddrGetDsfNoStats(self.I).decode('utf-8')
-
 	def GetDsfVacant(self):
 		return lib.mdAddrGetDsfVacant(self.I).decode('utf-8')
-
-	def GetDsfDNA(self):
-		return lib.mdAddrGetDsfDNA(self.I).decode('utf-8')
 
 	def GetCountryCode(self):
 		return lib.mdAddrGetCountryCode(self.I).decode('utf-8')
@@ -998,11 +997,23 @@ class mdAddr(object):
 	def GetMelissaAddressKeyBase(self):
 		return lib.mdAddrGetMelissaAddressKeyBase(self.I).decode('utf-8')
 
+	def GetOutputParameter(self, p1):
+		return lib.mdAddrGetOutputParameter(self.I, p1.encode('utf-8')).decode('utf-8')
+
+	def SetInputParameter(self, p1, p2):
+		return lib.mdAddrSetInputParameter(self.I, p1.encode('utf-8'), p2.encode('utf-8'))
+
 	def FindSuggestion(self):
 		return lib.mdAddrFindSuggestion(self.I)
 
 	def FindSuggestionNext(self):
 		return lib.mdAddrFindSuggestionNext(self.I)
+
+	def GetDsfNoStats(self):
+		return lib.mdAddrGetDsfNoStats(self.I).decode('utf-8')
+
+	def GetDsfDNA(self):
+		return lib.mdAddrGetDsfDNA(self.I).decode('utf-8')
 
 	def GetPS3553_B6_TotalRecords(self):
 		return lib.mdAddrGetPS3553_B6_TotalRecords(self.I)
@@ -1270,6 +1281,9 @@ class mdParse(object):
 
 	def GetDeliveryInstallation(self):
 		return lib.mdParseGetDeliveryInstallation(self.I).decode('utf-8')
+
+	def ParseRule(self):
+		return lib.mdParseParseRule(self.I)
 
 # mdStreet Enumerations
 class ProgramStatus(Enum):
