@@ -119,10 +119,10 @@ def run_as_console(license, test_address, test_city, test_state, test_zip, data_
     while should_continue_running:
         if (test_address == None or test_address == "") and (test_city == None or test_city == "") and (test_state == None or test_state == "") and (test_state == None or test_state == ""):
             print("\nFill in each value to see the Address Object results")
-            address = str(input("Address Line 1: "))
-            city =    str(input("          City: "))
-            state =   str(input("         State: "))
-            zip =     str(input("           Zip: "))
+            address = str(input("Address: "))
+            city =    str(input("City: "))
+            state =   str(input("State: "))
+            zip =     str(input("Zip: "))
         else:
             address = test_address
             city = test_city
@@ -133,7 +133,7 @@ def run_as_console(license, test_address, test_city, test_state, test_zip, data_
 
         """ Print user input """
         print("\n=============================== INPUTS ================================\n")
-        print(f"               Address Line 1: {data.address}")
+        print(f"                      Address: {data.address}")
         print(f"                         City: {data.city}")
         print(f"                        State: {data.state}")
         print(f"                          Zip: {data.zip}")

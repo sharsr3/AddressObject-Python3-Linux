@@ -23,12 +23,12 @@ And return
 - City
 - State
 - Zip
-- ResultCodes
+- Result Codes
 
 ## Tested Environments
 
-- Ubuntu Linux 20.04.04 LTS 64-bit .NET 7.0
-- Melissa data files for 2023-06
+- Linux 64-bit Python 3.8.7, Ubuntu 20.04.05 LTS
+- Melissa data files for 2023-07
 
 ## Required File(s) and Programs
 
@@ -84,7 +84,7 @@ If you see the version number then you have installed Python3 and set up your en
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/AddressObject-Python3-Linux.git
+$ git clone https://github.com/MelissaData/AddressObject-Python3-Linux
 $ cd AddressObject-Python3-Linux
 ```
 
