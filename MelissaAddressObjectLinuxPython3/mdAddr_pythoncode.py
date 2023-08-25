@@ -259,10 +259,10 @@ lib.mdAddrGetMelissaAddressKey.argtypes = [c_void_p]
 lib.mdAddrGetMelissaAddressKey.restype = c_char_p
 lib.mdAddrGetMelissaAddressKeyBase.argtypes = [c_void_p]
 lib.mdAddrGetMelissaAddressKeyBase.restype = c_char_p
-# lib.mdAddrGetOutputParameter.argtypes = [c_void_p, c_char_p]
-# lib.mdAddrGetOutputParameter.restype = c_char_p
-# lib.mdAddrSetInputParameter.argtypes = [c_void_p, c_char_p, c_char_p]
-# lib.mdAddrSetInputParameter.restype = c_int
+lib.mdAddrGetOutputParameter.argtypes = [c_void_p, c_char_p]
+lib.mdAddrGetOutputParameter.restype = c_char_p
+lib.mdAddrSetInputParameter.argtypes = [c_void_p, c_char_p, c_char_p]
+lib.mdAddrSetInputParameter.restype = c_int
 lib.mdAddrFindSuggestion.argtypes = [c_void_p]
 lib.mdAddrFindSuggestion.restype = c_bool
 lib.mdAddrFindSuggestionNext.argtypes = [c_void_p]
@@ -418,8 +418,8 @@ lib.mdParseGetLockBox.argtypes = [c_void_p]
 lib.mdParseGetLockBox.restype = c_char_p
 lib.mdParseGetDeliveryInstallation.argtypes = [c_void_p]
 lib.mdParseGetDeliveryInstallation.restype = c_char_p
-# lib.mdParseParseRule.argtypes = [c_void_p]
-# lib.mdParseParseRule.restype = c_int
+lib.mdParseParseRule.argtypes = [c_void_p]
+lib.mdParseParseRule.restype = c_int
 
 lib.mdStreetCreate.argtypes = []
 lib.mdStreetCreate.restype = c_void_p
@@ -715,7 +715,7 @@ class mdAddr(object):
 	def GetResults(self):
 		return lib.mdAddrGetResults(self.I).decode('utf-8')
 
-	def GetResultCodeDescription(self, resultCode, opt):
+	def GetResultCodeDescription(self, resultCode, opt=0):
 		return lib.mdAddrGetResultCodeDescription(self.I, resultCode.encode('utf-8'), ResultCdDescOpt(opt).value).decode('utf-8')
 
 	def SetPS3553_B1_ProcessorName(self, p1):
