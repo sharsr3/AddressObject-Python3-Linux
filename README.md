@@ -30,7 +30,7 @@ And return
 ## Tested Environments
 
 - Linux 64-bit Python 3.8.7, Ubuntu 20.04.05 LTS
-- Melissa data files for 2024-09
+- Melissa data files for 2024-10
 
 ## Required File(s) and Programs
 
@@ -86,8 +86,8 @@ If you see the version number then you have installed Python3 and set up your en
 
 #### Download this project
 ```
-$ git clone https://github.com/MelissaData/AddressObject-Python3-Linux
-$ cd AddressObject-Python3-Linux
+git clone https://github.com/MelissaData/AddressObject-Python3-Linux
+cd AddressObject-Python3-Linux
 ```
 
 #### Set up Melissa Updater 
@@ -157,35 +157,35 @@ Parameters:
 
 - Interactive 
 
-	The script will prompt the user for an address, city, state, and zip, then use the provided inputs to test Address Object. For example:
-	```
-	$ ./MelissaAddressObjectLinuxPython3.sh
-	```
-    For quiet mode:
-    ```
-    $ ./MelissaAddressObjectLinuxPython3.sh -quiet
-    ```
+  The script will prompt the user for an address, city, state, and zip, then use the provided inputs to test Address Object. For example:
+  ```
+  ./MelissaAddressObjectLinuxPython3.sh
+  ```
+  For quiet mode:
+  ```
+  ./MelissaAddressObjectLinuxPython3.sh -quiet
+  ```
 - Command Line 
 
-	You can pass an address, city, state, zip, and a license string into the ```--address```, ```--city```, ```--state```, ```--zip```, and ```--license``` parameters respectively to test Address Object. For example:
+  You can pass an address, city, state, zip, and a license string into the ```--address```, ```--city```, ```--state```, ```--zip```, and ```--license``` parameters respectively to test Address Object. For example:
 
-    With all parameters:
-    ```
-    $ ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688"
-    $ ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688" --license "<your_license_string>"
-    ```
+  With all parameters:
+  ```
+  ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688"
+  ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688" --license "<your_license_string>"
+  ```
 
-    With any known (optional) parameters:
-    ```
-    $ ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --state "CA" 
-    $ ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --state "CA" --license "<your_license_string>"
-    ```
+  With any known (optional) parameters:
+  ```
+  ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --state "CA" 
+  ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --state "CA" --license "<your_license_string>"
+  ```
 
-    For quiet mode:
-    ```
-    $ ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688" --quiet
-    $ ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688" --license "<your_license_string>" --quiet
-    ```
+  For quiet mode:
+  ```
+  ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688" --quiet
+  ./MelissaAddressObjectLinuxPython3.sh --address "22382 Avenida Empresa" --city "Rancho Santa Margarita" --state "CA" --zip "92688" --license "<your_license_string>" --quiet
+  ```
 This is the expected output of a successful setup for interactive mode:
 
 ![alt text](/screenshots/output.PNG)
