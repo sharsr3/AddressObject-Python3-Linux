@@ -126,10 +126,10 @@ while IFS=',' read -r address city state zip; do
   result=$(python3 $ProjectPath/MelissaAddressObjectLinuxPython3.py --license "$license" --dataPath "$dataPath" --address "$address"  --city "$city" --state "$state" --zip "$zip")
 
   # Extract required data from output
-  validated_address=$(echo "$result" | grep "Validated Address" | cut -d':' -f2 | xargs
-  validated_city=$(echo "$result" | grep "Validated City" | cut -d':' -f2 | xargs
-  validated_state=$(echo "$result" | grep "Validated State" | cut -d':' -f2 | xargs
-  validated_zip=$(echo "$result" | grep "Validated Zip" | cut -d':' -f2 | xargs
+  validated_address=$(echo "$result" | grep "Validated Address" | cut -d':' -f2 | xargs)
+  validated_city=$(echo "$result" | grep "Validated City" | cut -d':' -f2 | xargs)
+  validated_state=$(echo "$result" | grep "Validated State" | cut -d':' -f2 | xargs)
+  validated_zip=$(echo "$result" | grep "Validated Zip" | cut -d':' -f2 | xargs)
 
   # Append result to CSV
   echo "$address,$city,$state,$zip,$,validated_address,$validated_city,$validated_state,$validated_zip" >> "$outputCSV"
