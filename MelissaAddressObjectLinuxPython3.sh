@@ -111,6 +111,33 @@ Wrapper_Compiler="PYTHON"
 Wrapper_Architecture="ANY"
 Wrapper_Type="INTERFACE"
 
+
+######################## Processing #######################
+
+# Ensure output file exits
+outputCSV="output.csv"
+echo "Address,City,State,Zip,ValidatedAddress,ValidatedCity,ValidatedState,ValidatedZip"> "$outputCSV"
+
+#Read CSV and process each record
+while IFS=',' read -r address city state zip; do
+  if [[ "$address" == "Address" ]] then
+    contine  #Skip header row
+  fi
+  result=$(python3 $ProjectPath/MelissaAddressObjectLinuxPython3.py --license "$license" --dataPath "$dataPath" --address "$address"  --city "$city" --state "$state" --zip "$zip")
+
+  # Extract required data from output
+  validated_address=$(echo "$result" | grep "Validated Address" | cut -d':' -f2 | xargs
+  validated_city=$(echo "$result" | grep "Validated City" | cut -d':' -f2 | xargs
+  validated_state=$(echo "$result" | grep "Validated State" | cut -d':' -f2 | xargs
+  validated_zip=$(echo "$result" | grep "Validated Zip" | cut -d':' -f2 | xargs
+
+  # Append result to CSV
+  echo "$address,$city,$state,$zip,$,validated_address,$validated_city,$validated_state,$validated_zip" >> "outputCSV"
+done < "$inputCSV"
+
+printf "Processing complete. Output saved to $outputCSV\n"
+
+
 ######################## Functions #########################
 
 DownloadDataFiles()
