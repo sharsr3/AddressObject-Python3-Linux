@@ -132,7 +132,7 @@ while IFS=',' read -r address city state zip; do
   validated_zip=$(echo "$result" | grep "Validated Zip" | cut -d':' -f2 | xargs
 
   # Append result to CSV
-  echo "$address,$city,$state,$zip,$,validated_address,$validated_city,$validated_state,$validated_zip" >> "outputCSV"
+  echo "$address,$city,$state,$zip,$,validated_address,$validated_city,$validated_state,$validated_zip" >> "$outputCSV"
 done < "$inputCSV"
 
 printf "Processing complete. Output saved to $outputCSV\n"
