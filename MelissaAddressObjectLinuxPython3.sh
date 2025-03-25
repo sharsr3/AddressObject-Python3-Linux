@@ -120,7 +120,7 @@ echo "Address,City,State,Zip,ValidatedAddress,ValidatedCity,ValidatedState,Valid
 
 #Read CSV and process each record
 while IFS=',' read -r address city state zip; do
-  if [[ "$address" == "Address" ]] then
+  if [[ "$address" == "Address" ]]; then
     contine  #Skip header row
   fi
   result=$(python3 $ProjectPath/MelissaAddressObjectLinuxPython3.py --license "$license" --dataPath "$dataPath" --address "$address"  --city "$city" --state "$state" --zip "$zip")
