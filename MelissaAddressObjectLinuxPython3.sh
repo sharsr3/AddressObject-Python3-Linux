@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Name:    MelissaAddressObjectLinuxPython3
-# Purpose: Use the MelissaUpdater to make the MelissaAddressObjectLinuxPython3 code usable
+# Name:    MelissaAddressObjectLinuxPython3Batch
+# Purpose: Use the MelissaUpdater to process multiple recordsfrom a CSV file
 
 ######################### Constants ##########################
 
@@ -10,67 +10,37 @@ NC='\033[0m' # No Color
 
 ######################### Parameters ##########################
 
-address=""
-city=""
-state=""
-zip=""
+inputCSV=""
 dataPath=""
 license=""
 quiet="false"
 
 while [ $# -gt 0 ] ; do
   case $1 in
-    --address) 
-        address="$2"
+    --inputCSV) 
+        inputCSV="$2"
 
-        if [ "$address" == "--city" ] || [ "$address" == "--state" ] || [ "$address" == "--zip" ] || [ "$address" == "--dataPath" ] || [ "$address" == "--license" ] || [ "$address" == "--quiet" ] || [ -z "$address" ];
+        if [ -z "$inputCSV" ] || [ ! -f "$inputCSV" ];
         then
-            printf "${RED}Error: Missing an argument for parameter \'address\'.${NC}\n"  
+            printf "${RED}Error: Invalid or missing CSV file.${NC}\n"  
             exit 1
         fi  
-        ;;
-	--city) 
-        city="$2"
-
-        if [ "$city" == "--address" ] || [ "$city" == "--state" ] || [ "$city" == "--zip" ] || [ "$city" == "--dataPath" ] || [ "$city" == "--license" ] || [ "$city" == "--quiet" ] || [ -z "$city" ];
-        then
-            printf "${RED}Error: Missing an argument for parameter \'city\'.${NC}\n"  
-            exit 1
-        fi  
-        ;;
-	--state) 
-        state="$2"
-
-        if [ "$state" == "--city" ] || [ "$state" == "--address" ] || [ "$state" == "--zip" ] || [ "$state" == "--dataPath" ] || [ "$state" == "--license" ] || [ "$state" == "--quiet" ] || [ -z "$state" ];
-        then
-            printf "${RED}Error: Missing an argument for parameter \'state\'.${NC}\n"  
-            exit 1
-        fi   
-        ;;
-	--zip) 
-        zip="$2"
-
-        if [ "$zip" == "--city" ] || [ "$zip" == "--state" ] || [ "$zip" == "--address" ] || [ "$zip" == "--dataPath" ] ||  [ "$zip" == "--license" ] || [ "$zip" == "--quiet" ] || [ -z "$zip" ];
-        then
-            printf "${RED}Error: Missing an argument for parameter \'zip\'.${NC}\n"  
-            exit 1
-        fi   
-        ;;		
+        ;;	
     --dataPath) 
         dataPath="$2"
 
-        if [ "$dataPath" == "--address" ] || [ "$dataPath" == "--city" ] || [ "$dataPath" == "--state" ] || [ "$dataPath" == "--zip" ] || [ "$dataPath" == "--license" ] || [ "$dataPath" == "--quiet" ] || [ -z "$dataPath" ];
+        if [ -z "$dataPath" ] || [ ! -d "$dataPath" ]; 
         then
-            printf "${RED}Error: Missing an argument for parameter \'dataPath\'.${NC}\n"  
+            printf "${RED}Error: Invalid or missing data path.${NC}\n"  
             exit 1
         fi   
         ;;
     --license) 
         license="$2"
 
-        if [ "$license" == "--city" ] || [ "$license" == "--state" ] || [ "$license" == "--zip" ] || [ "$license" == "--address" ] || [ "$license" == "--dataPath" ] || [ "$license" == "--quiet" ] || [ -z "$license" ];
+        if [ -z "$license" ];
         then
-            printf "${RED}Error: Missing an argument for parameter \'license\'.${NC}\n"  
+            printf "${RED}Error: Missing license key.${NC}\n"  
             exit 1
         fi    
         ;;
