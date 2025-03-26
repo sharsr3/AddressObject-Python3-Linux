@@ -61,22 +61,19 @@ CurrentPath=$(pwd)
 ProjectPath="$CurrentPath/MelissaAddressObjectLinuxPython3"
 
 # check for required inputs
-if [-z "$inputCSV" ];
-then
-    printf "${RED}Error: You must provide a CSV file with --inputCSV.${NC}\n" 
-    exit 1
+if [-z "$inputCSV" ];then
+  printf "${RED}Error: You must provide a CSV file with --inputCSV.${NC}\n" 
+  exit 1
 fi
 
-if [-z "$license" ];
-then
-    printf "Please enter your license string: "
-    read license
+if [-z "$license" ];then
+  printf "Please enter your license string: "
+  read license
 fi
 
-if [-z "$license" ];
-then
-    printf "${RED}Error: License key is required.${NC}\n" 
-    exit 1
+if [-z "$license" ];then
+  printf "${RED}Error: License key is required.${NC}\n" 
+  exit 1
 fi
   
 if [ -z "$dataPath" ];
