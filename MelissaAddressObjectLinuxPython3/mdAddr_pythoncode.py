@@ -9,7 +9,7 @@ if (os.name == 'nt' and sys.version_info[:2] >= (3,8)):
 elif (os.name == 'nt'):
   lib = ctypes.CDLL('mdAddr.dll')
 else:
-  lib = ctypes.CDLL('libmdAddr.so')
+  lib = ctypes.CDLL('/var/lib/melissa/dqt/AddrObj/libmdAddr.so')
 
 lib.mdAddrCreate.argtypes = []
 lib.mdAddrCreate.restype = c_void_p
